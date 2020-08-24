@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Output</title>
+    <style type="text/css">
+    span {
+        display: inline-block;
+        width: 200px;
+        text-align: left;
+    }
+    </style>
+</head>
+<body style="background-color:#2C2F33; color:#FFFFFF; font-family:courier;">
+<div>
+    <h2>Here is your generated spam email!</h2>
+    <p>
+        <span>Order:</span><span th:text="${ifb.order}"></span>
+    </p>
+    <p>
+        <span>Length:</span><span th:text="${ifb.length}"></span>
+    </p>
+    <p>
+        <span>Output:</span>
+    </p>
+    <p th:text="${ifb.output}">
+    </p>
+</div>
+</body>
+</html>

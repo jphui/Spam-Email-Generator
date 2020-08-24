@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<HTML xmlns:th="http://www.thymeleaf.org">
+    <HEAD>
+        <TITLE>@jphui's Markov Chain Generator</TITLE>
+        <script type="text/javascript">
+            function validateInput(){
+                var s = document.getElementById("input").value;
+                s = s.replace(/(^\s*)|(\s*$)/gi,"");
+                s = s.replace(/[ ]{2,}/gi," ");
+                s = s.replace(/\n /,"\n");
+                var n = s.trim().split(" ");
+                var end = n.slice(-1).toString();
+                if (n.length < 5) {
+                    alert("Minimum 5 words required.");
+                    console.log("words");
+                    return;
+                }
+                if (end.includes(".") || end.includes("?") || end.includes("!") || end.includes("'") || end.includes("\"")) {
+                    document.getElementById("myForm").submit();
+                    console.log("subbed");
+                }
+                else
+                {
+                    alert("Punctuation at end required.");
+                    console.log("punc");
+                    return;
+                }
+            }
+        </script>
+    </HEAD>
+
+    <BODY style="background-color:#2C2F33; color:#FFFFFF; font-family:courier;">
+        <H1><a href="http://github.com/jphui">@jphui</a>'s Markov Chain Spam Generator</H1>
+        <p>
+            Hello! This is a simple "spam email generator" that takes your input and trains a 1st, 2nd, or 3rd order
+            Markov Chain model to generate a specified number of sentences based on the input's style.
+        </p>
+        <p>
+            Note that while higher training orders will generate increasingly cohesive sentences, they are limited by
+            the complexity of the input material. In addition, higher orders require more training material in order to
+            be able to do more than merely "copy" sentences word for word as they appear in the input.
+        </p>
+        <p>
+            The input text should nevertheless be relatively substantial (bare minimum of a few paragraphs, at least)
+            and have punctuation. The lack of punctuated input will result in undefined behavior at the moment, since
+            the unit of generation -- a sentence -- is terminated by a word with punctuation.
+        </p>
+        <p>
+            I have set a hard minimum of at least 5 words, with the requirement that the last word must have punctuation
+            (.?!'").
+        </p>
+        <form id="myForm" th:action="@{/result}" method="post" th:object="${ifb}">
+            <p>
+                <textarea name="input" th:field="*{input}" style="width:650px;height:200px;" placeholder="Input text"></textarea>
+            </p>
+            <p>
+                <label>Order:</label>
+                <!--
+                <div><input type="radio" name="order" th:field="*{order}" value="1" />1st checked </div>
+                <div><input type="radio" name="order" th:field="*{order}" value="2" />2nd</div>
+                <div><input type="radio" name="order" th:field="*{order}" value="3" />3rd</div>
+                -->
+                <select th:field="*{order}">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                </select>
+            </p>
+            <p>
+                <label>Number of sentences:</label>
+                <select th:field="*{length}">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </p>
+            <p>
+                <button type="button" onclick="validateInput()">Generate</button>
+            </p>
+        </form>
+        <p>
+            The source for this webapp can be found <a href="http://github.com/jphui">here</a>!
+        </p>
+    </BODY>
+</HTML>
