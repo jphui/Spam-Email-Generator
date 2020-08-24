@@ -17,9 +17,7 @@
 
 	<properties>
 		<java.version>14</java.version>
-		<maven.compiler.source>1.14</maven.compiler.source>
-		<maven.compiler.target>1.14</maven.compiler.target>
-		<maven.compiler.release>14</maven.compiler.release>
+		<release>14</release>
 	</properties>
 
 	<dependencies>
