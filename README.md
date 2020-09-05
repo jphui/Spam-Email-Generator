@@ -1,5 +1,6 @@
 # Email Generator Genie (E.G.G. Man)
 (formerly known as Spam-Email-Generator)
+
 Hosted on Heroku [here](https://eggman.ml).
 
 **=== Backstory ===**
