@@ -1,29 +1,71 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Output</title>
-    <style type="text/css">
-    span {
-        display: inline-block;
-        width: 200px;
-        text-align: left;
-    }
-    </style>
+    <title>E.G.G. Man</title>
+    <meta charset="UTF-8">
+    <!--change "max-width" to "device-width" if needed-->
+    <meta name="viewport" content="width=max-width initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script type="text/javascript">
+        function submitGet(){
+            document.getElementById("myForm").submit();
+            console.log("subbed");
+        }
+    </script>
 </head>
-<body style="background-color:#2C2F33; color:#FFFFFF; font-family:courier;">
-<div>
-    <h2>Here is your generated spam email!</h2>
-    <p>
-        <span>Order:</span><span th:text="${ifb.order}"></span>
-    </p>
-    <p>
-        <span>Length:</span><span th:text="${ifb.length}"></span>
-    </p>
-    <p>
-        <span>Output:</span>
-    </p>
-    <p th:text="${ifb.output}">
-    </p>
-</div>
+<body>
+    <div class="view-wrapper">
+        <div class="main" >
+            <div class="flex-container">
+                <div class="blob" style="flex: 0 1 auto; background: rgba(119, 34, 204, 0.8)">
+                    <h1>🧞</h1>
+                </div>
+                <a href="https://jhui.gq" style="display: flex; align-self: flex-end;">
+                    <div class="bloblink" style="padding: 1.6rem;">
+                        <h2 style="margin: 0;">🏠</h2>
+                    </div>
+                </a>
+                <div class="clear"></div>
+            </div>
+            <div class="flex-container">
+                <div class="blob" style="display: flex" id="fw1">
+                    <div style="margin: auto">
+                        <p style="font-size: 2.4rem; text-align: center"><i>I like your style! Here's what I could come up with...</i></p>
+                    </div>
+                </div>
+                <div class="blob" style="display: flex" id="fg2">
+                    <div style="margin: auto;">
+                        <p style="text-align: center">Options Selected</p>
+                        <br>
+                        <span style='display: table-cell;'>Order:</span>
+                        <span th:text="${ifb.order}"style='display: table-cell; width: 100%; text-align: right;'></span>
+                        <br>
+                        <span style='display: table-cell;'>Length:</span>
+                        <span th:text="${ifb.length}" style='display: table-cell; width: 100%; text-align: right;'></span>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="flex-container">
+                <div class="blob">
+                    <p th:text="${ifb.output}"></p>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <form id="myForm" th:action="@{/}" method="get"></form>
+            <a href="javascript:submitGet()" style="display: flex; flex: 1;">
+                <div class="blobsub" style="background: rgba(119, 34, 204, 0.8); padding: 0">
+                    <p style="font-family: 'Courier New'; text-align: center; color: white; font-size: 3.2rem;">Try Again</p>
+                </div>
+            </a>
+            <span style="display: block;
+                                width: 100%;
+                                text-align: center;
+                                margin-top: 0;
+                                padding-bottom: 1rem">© 2020 <a style="color:crimson" target="_blank" href="https://github.com/jphui/Spam-Email-Generator">Jonathan Hui</a></span>
+        </div>
+    </div>
 </body>
 </html>

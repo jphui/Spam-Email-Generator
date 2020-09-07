@@ -1,87 +1,148 @@
 <!DOCTYPE html>
-<HTML xmlns:th="http://www.thymeleaf.org">
-    <HEAD>
-        <TITLE>@jphui's Markov Chain Generator</TITLE>
-        <script type="text/javascript">
-            function validateInput(){
-                var s = document.getElementById("input").value;
-                s = s.replace(/(^\s*)|(\s*$)/gi,"");
-                s = s.replace(/[ ]{2,}/gi," ");
-                s = s.replace(/\n /,"\n");
-                var n = s.trim().split(" ");
-                var end = n.slice(-1).toString();
-                if (n.length < 5) {
-                    alert("Minimum 5 words required.");
-                    console.log("words");
-                    return;
-                }
-                if (end.includes(".") || end.includes("?") || end.includes("!") || end.includes("'") || end.includes("\"")) {
-                    document.getElementById("myForm").submit();
-                    console.log("subbed");
-                }
-                else
-                {
-                    alert("Punctuation at end required.");
-                    console.log("punc");
-                    return;
-                }
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>E.G.G. Man</title>
+    <meta charset="UTF-8">
+    <!--change "max-width" to "device-width" if needed-->
+    <meta name="viewport" content="width=device-width initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script type="text/javascript">
+        function validateInput(){
+            var s = document.getElementById("input").value;
+            s = s.replace(/(^\s*)|(\s*$)/gi,"");
+            s = s.replace(/[ ]{2,}/gi," ");
+            s = s.replace(/\n /,"\n");
+            var n = s.trim().split(" ");
+            var end = n.slice(-1).toString();
+            if (n.length < 5) {
+                alert("Minimum 5 words required.");
+                console.log("words");
+                return;
             }
-        </script>
-    </HEAD>
-
-    <BODY style="background-color:#2C2F33; color:#FFFFFF; font-family:courier;">
-        <H1><a href="http://github.com/jphui">@jphui</a>'s Markov Chain Spam Generator</H1>
-        <p>
-            Hello! This is a simple "spam email generator" that takes your input and trains a 1st, 2nd, or 3rd order
-            Markov Chain model to generate a specified number of sentences based on the input's style.
-        </p>
-        <p>
-            Note that while higher training orders will generate increasingly cohesive sentences, they are limited by
-            the complexity of the input material. In addition, higher orders require more training material in order to
-            be able to do more than merely "copy" sentences word for word as they appear in the input.
-        </p>
-        <p>
-            The input text should nevertheless be relatively substantial (bare minimum of a few paragraphs, at least)
-            and have punctuation. The lack of punctuated input will result in undefined behavior at the moment, since
-            the unit of generation -- a sentence -- is terminated by a word with punctuation.
-        </p>
-        <p>
-            I have set a hard minimum of at least 5 words, with the requirement that the last word must have punctuation
-            (.?!'").
-        </p>
-        <form id="myForm" th:action="@{/result}" method="post" th:object="${ifb}">
-            <p>
-                <textarea name="input" th:field="*{input}" style="width:650px;height:200px;" placeholder="Input text"></textarea>
-            </p>
-            <p>
-                <label>Order:</label>
-                <!--
-                <div><input type="radio" name="order" th:field="*{order}" value="1" />1st checked </div>
-                <div><input type="radio" name="order" th:field="*{order}" value="2" />2nd</div>
-                <div><input type="radio" name="order" th:field="*{order}" value="3" />3rd</div>
-                -->
-                <select th:field="*{order}">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                </select>
-            </p>
-            <p>
-                <label>Number of sentences:</label>
-                <select th:field="*{length}">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                </select>
-            </p>
-            <p>
-                <button type="button" onclick="validateInput()">Generate</button>
-            </p>
-        </form>
-        <p>
-            The source for this webapp can be found <a href="http://github.com/jphui">here</a>!
-        </p>
-    </BODY>
-</HTML>
+            if (end.includes(".") || end.includes("?") || end.includes("!") || end.includes("'") || end.includes("\"")) {
+                document.getElementById("myForm").submit();
+                console.log("subbed");
+            }
+            else
+            {
+                alert("Punctuation at end required.");
+                console.log("punc");
+                return;
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="view-wrapper">
+        <div class="main" >
+            <div class="flex-container">
+                <div class="blob" style="flex: 0 1 auto; background: rgba(119, 34, 204, 0.8)">
+                    <h1>🧞</h1>
+                </div>
+                <a href="https://jhui.gq" style="display: flex; align-self: flex-end;">
+                    <div class="bloblink" style="padding: 1.6rem;">
+                        <h2 style="margin: 0;">🏠</h2>
+                    </div>
+                </a>
+                <div class="clear"></div>
+            </div>
+            <div class="flex-container-reverse">
+                <div class="blob" style="display: flex" id="fw1">
+                    <div style="margin: auto">
+                        <p style="text-align:center;">
+                            Hello, hello! My name's Email Generator Genie, but you can call me Eggman.
+                            I'm no <i>Akinator</i>, but <b>if you talk to me, I can learn to sound just like you</b>.
+                        </p>
+                        <p style="text-align:center;">
+                            Two rules there are, no more, no less:
+                        </p>
+                        <p>
+                            1. You must give me at least 5 words...
+                        </p>
+                        <p>
+                            2. the last of which must have punctuation <span style="font-family:'Courier New'";>(.?!'")</span>.
+                        </p>
+                    </div>
+                </div>
+                <div class="blob" style="display: flex;" id="fg1">
+                    <div style="margin: auto;">
+                        <p style="text-align:center;">
+                            <i>"I don’t think you quite realize what you got here.
+                                So, why don’t you just ruminate while I illuminate the possibilities."
+                            </i>
+                        </p>
+                        <p p style="text-align:center;">
+                            ~ Robin Williams as Genie, <i>Aladdin</i>
+                        </p>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <form id="myForm" th:action="@{/result}" method="post" th:object="${ifb}">
+                <div class="blob">
+                    <textarea name="input" th:field="*{input}"
+                        style=  "width:100%;
+                                height: 10rem;
+                                background-color:#99AAB5;
+                                font-size: 1.4rem;"
+                        placeholder="Input text (copy-paste here)"></textarea>
+                </div>
+                <div class="flex-container">
+                    <div class="blob">
+                        <p>
+                            No wishes here, but you do get a generous offering of 3 orders to choose from!
+                            Note that while higher training orders will generate increasingly cohesive sentences, they are limited by
+                            the complexity of the input material. In addition, higher orders require more training material in order to
+                            be able to do more than merely "copy" sentences word for word as they appear in the input. As such, the input
+                            text should be relatively substantial (bare minimum of a few paragraphs, at least).
+                        </p>
+                    </div>
+                </div>
+                <div class="flex-container">
+                    <div class="blob" id="fw2" style="display: flex;">
+                        <div style="margin: auto;">
+                            <label style="font-size: 2.4rem">Order&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                            <!--
+                            <div><input type="radio" name="order" th:field="*{order}" value="1" />1st checked </div>
+                            <div><input type="radio" name="order" th:field="*{order}" value="2" />2nd</div>
+                            <div><input type="radio" name="order" th:field="*{order}" value="3" />3rd</div>
+                            -->
+                            <select th:field="*{order}" style="font-family: 'Roboto Slab', serif; font-size: 2.4rem; border-radius: 20%">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="blob" style="display: flex;">
+                        <div style="margin: auto;">
+                            <label style="font-size: 2.4rem">Number of sentences&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                            <select th:field="*{length}" style="font-family: 'Roboto Slab', serif; font-size: 2.4rem; border-radius: 20%">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <a href="javascript:validateInput()" style="display: flex; flex: 1;">
+                    <div class="blobsub" style="background: rgba(119, 34, 204, 0.8);">
+                        <h1 style="font-family: 'Courier New'; text-align: center; color: white">GENERATE</h1>
+                    </div>
+                </a>
+            </form>
+            <span style="display: block;
+                            width: 100%;
+                            text-align: center;
+                            margin-top: 0;
+                            padding-bottom: 1rem">
+                © 2020 <a style="color:crimson" target="_blank" href="https://github.com/jphui/Spam-Email-Generator">Jonathan Hui</a>
+            </span>
+        </div>
+    </div>
+</body>
+</html>

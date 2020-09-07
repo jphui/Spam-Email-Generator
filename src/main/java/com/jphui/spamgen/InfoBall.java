@@ -46,6 +46,8 @@ public class InfoBall
 
             //System.out.println(tempfile.delete());
             tempfile.delete();
+
+            System.out.println(output);
         }
         catch(Exception e)
         {
