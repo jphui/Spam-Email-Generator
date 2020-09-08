@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="./../static/css/style.css">
     <script type="text/javascript">
         function validateInput(){
             var s = document.getElementById("input").value;
@@ -82,12 +82,17 @@
             </div>
             <form id="myForm" th:action="@{/result}" method="post" th:object="${ifb}">
                 <div class="blob">
+                    <span style="font-size: 2.4rem;
+                                padding-bottom: 1rem;
+                                text-align: center;
+                                width: 100%;
+                                display: inline-block;">Input</span>
                     <textarea name="input" th:field="*{input}"
                         style=  "width:100%;
                                 height: 10rem;
                                 background-color:#99AAB5;
                                 font-size: 1.4rem;"
-                        placeholder="Input text (copy-paste here)"></textarea>
+                                placeholder="Copy-paste here"></textarea>
                 </div>
                 <div class="flex-container">
                     <div class="blob">
