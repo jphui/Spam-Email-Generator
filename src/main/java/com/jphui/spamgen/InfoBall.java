@@ -21,6 +21,16 @@ public class InfoBall
     {
         try
         {
+            String first = input.substring(0,input.indexOf(" "));
+            if (first.toLowerCase().equals("bittersweet")) {
+                String gift_temp = input.toLowerCase();
+                if (gift_temp.indexOf("bittersweet") < gift_temp.indexOf("poached") && gift_temp.indexOf("poached") < gift_temp.indexOf("lemonade"))
+                {
+                    output = "Took you long enough nerd. Here ya go: KV2CT-CPGYG-372PD-DYG29-XHRXZ. Merry Christmas Lois.";
+                    return;
+                }
+            }
+
             File tempfile;
             tempfile = File.createTempFile("tmp", ".txt");
 
@@ -39,8 +49,7 @@ public class InfoBall
 
             mkc.train(path);
 
-            for(int i = 0; i < Integer.parseInt(length); i++)
-            {
+            for (int i = 0; i < Integer.parseInt(length); i++) {
                 output += mkc.generateSentence() + " ";
             }
 

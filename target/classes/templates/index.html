@@ -17,6 +17,14 @@
             var n = s.trim().split(" ");
             var end = n.slice(-1).toString();
             if (n.length < 5) {
+                if (n.length == 3) {
+                    var s_mod = s.toLowerCase()
+                    if (s_mod.indexOf("bittersweet") == 0 && s_mod.indexOf("bittersweet") < s_mod.indexOf("poached") && s_mod.indexOf("poached") < s_mod.indexOf("lemonade")) {
+                        document.getElementById("myForm").submit();
+                        console.log("subbed easter egg");
+                        return;
+                    }
+                }
                 alert("Minimum 5 words required.");
                 console.log("words");
                 return;
@@ -24,6 +32,7 @@
             if (end.includes(".") || end.includes("?") || end.includes("!") || end.includes("'") || end.includes("\"")) {
                 document.getElementById("myForm").submit();
                 console.log("subbed");
+                return;
             }
             else
             {
